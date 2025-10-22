@@ -29,8 +29,10 @@ let count = 0
 function rowInsertion(e){
     
     if(count===10){
+        count=0
         tbody.remove()
         // rowCreation(e)
+        rowInsertion(e)
         // console.log(count)
     }else{
         count++

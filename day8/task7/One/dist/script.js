@@ -1,0 +1,45 @@
+"use strict";
+// 7) task i => Student's mark status
+const students = [
+    { name: 'Alice', marks: 42 },
+    { name: 'Bob', marks: 67 },
+    { name: 'Charlie', marks: 35 }
+];
+function addStatus(arr) {
+    let newArr = [];
+    arr.forEach(item => {
+        if (item.marks > 45) {
+            newArr.push({ name: item.name, status: 'Pass' });
+        }
+        else {
+            newArr.push({ name: item.name, status: 'Fail' });
+        }
+    });
+    return newArr;
+}
+console.log(addStatus(students));
+function anagrams(arr) {
+    let groups = {};
+    arr.forEach(item => {
+        let sorted = item.split('').sort().join('');
+        if (!groups[sorted]) {
+            groups[sorted] = [];
+        }
+        groups[sorted].push(item);
+    });
+    let result = Object.values(groups);
+    console.log(result);
+}
+anagrams(['care', 'race', 'acre', 'dog', 'god', 'cat']);
+//Task 6 : enum directions
+var directions;
+(function (directions) {
+    directions[directions["Up"] = 0] = "Up";
+    directions[directions["Down"] = 1] = "Down";
+    directions[directions["Left"] = 2] = "Left";
+    directions[directions["Right"] = 3] = "Right";
+})(directions || (directions = {}));
+function movement(direction) {
+    return `You moved ${directions[direction]}`; // accessing value of directions enum , at specified direction
+}
+console.log(movement(directions.Up));

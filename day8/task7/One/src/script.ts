@@ -28,7 +28,9 @@ function addStatus(arr:myObj[]):newObj[]{ // instead of object[] we used myObj[]
 }
 console.log(addStatus(students))
 
+//task i => Todo list with localStorage
 
+// task i => Anagrams from array
 function anagrams(arr:string[]){
     let groups:{[key:string]:string[]} = {}
 

@@ -1,3 +1,4 @@
+// Sum of array items
 function SumOfArray(arr:number[][]){
    let newArr:number[] = []
     arr.forEach(item=>{
@@ -8,7 +9,10 @@ function SumOfArray(arr:number[][]){
 }
 console.log(SumOfArray([[1,2,3], [0,7]]))
 
+// Sum of n numbers
 function sum(...n:number[]){
     return n.reduce((acc,curr)=> acc+curr)
 }
 console.log(sum(1,2,3,4,5))
+
+// Image gallery

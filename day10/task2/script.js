@@ -1,12 +1,14 @@
-const textBar = document.querySelector('.text')
 const progress = document.querySelector('.progress')
+const textBar = document.querySelector('.text')
+
 
 textBar.addEventListener('scroll',()=>{
     const movedLength = textBar.scrollTop
-    const totalLength = textBar.scrollHeight - textBar.clientHeight
-    const length = (movedLength/totalLength) *100
+    const scrollLength = textBar.scrollHeight - textBar.clientHeight
 
+    const length = (movedLength/scrollLength) * 100
     progress.classList.add('progress1')
+
     if(length === 0){
         progress.style.width = '0%'
     }else if(length > 0 && length < 30){

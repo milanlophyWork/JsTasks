@@ -27,18 +27,14 @@ inputElement.addEventListener('keydown',rowInsertion)
 
 let count = 0
 function rowInsertion(e){
-    
-    if(count===10){
-        count=0
-        tbody.remove()
-        // rowCreation(e)
-        rowInsertion(e)
-        // console.log(count)
-    }else{
-        count++
-        rowCreation(e)
-        // console.log(count)
+    count++
+    if(count > 10){
+        let first = tbody.firstElementChild
+        tbody.removeChild(first)
     }
+    rowCreation(e)
+    console.log(count)
+
 }
 
 function rowCreation(e){

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover list</title>
+    <style>
+        .li-el{
+            width: 150px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 10px;
+            cursor: pointer; 
+        }
+        .tooltip-text{
+            visibility: hidden;
+            width: 300px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+        }
+        .li-el:hover .tooltip-text{
+            visibility: visible;
+            overflow: visible;
+            white-space: nowrap;
+            text-overflow: unset;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="li-el"><span>Welcome to coding world</span>
+        <span class="tooltip-text">Welcome to coding world</span></li>
+
+        <li class="li-el"><span>Welcome to coding world</span>
+        <span class="tooltip-text">Welcome to coding world</span></li>
+
+        <li class="li-el"><span class="span-el">Welcome to coding world</span>
+        <span class="tooltip-text">Welcome to coding world</span></li>
+    </ul>
+
+    <script src="temp.js"></script>
+</body>
+</html>

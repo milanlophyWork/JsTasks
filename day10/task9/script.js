@@ -1,4 +1,4 @@
-
+/*
 function isValidEmail(email){
     let arr = email.split('.') // split email based on .
     let lastElement = arr[arr.length-1]
@@ -34,7 +34,14 @@ function isValidEmail(email){
     
     if(flag === 0) console.log('Invalid Email')
         else console.log('Valid email: ',email)
+}*/
+
+function isValidEmail(email){
+    const input = document.createElement('input')
+    input.type = 'email'
+    input.value = email
+    console.log(input.checkValidity())
 }
 isValidEmail('milan.lophy@vonnue.com')
 isValidEmail('milan.lophyvonnue.com')
-isValidEmail('milan.lophy@vonnuein')
+isValidEmail('@vonnue.in')

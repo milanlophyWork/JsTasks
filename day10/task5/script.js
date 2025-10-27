@@ -1,24 +1,22 @@
 function countDown(targetDate){
-    const currentYear = new Date().getFullYear()
-    const currentMonth = new Date().getMonth()
-    const currentDate = new Date().getDate()
-    const arr = targetDate.split('-')
-    let targetYear=Number(arr[0])
-    let targetMonth = Number(arr[1])
-    let date = Number(arr[2])
+    const target = new Date(targetDate).getTime()
 
-    let ThirtyDays = [4,6,9,11]
-    
-    // if(targetYear >= currentYear){
-    //     if(targetYear - currentYear === 0){
-    //         targetMonth -currentMonth === 0 ? date - currentDate : 31 - 9,4,6,11
-    //     }
-    // }else return 'invalid entry'
+    const timer = setInterval(()=> {
+        const now = new Date().getTime()
+        const distance = target - now
 
-    // if(targetYear >= currentYear){
-    //     console.log(targetYear - currentYear)
-    // }else return 'invalid entry'
-    
-    console.log(arr,currentMonth)
+        if(distance <= 0){
+            clearInterval(timer)
+            console.log('Countdown completed!')
+            return
+        }
+
+        const days = Math.floor(distance/ (1000 * 60 * 60 * 24))
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60 ))
+        const minutes = Math.floor((distance % (1000 * 60 * 60))/ (1000 * 60))
+        const seconds = Math.floor((distance % (1000 * 60))/ 1000)
+
+        console.log(`${days}d ${hours}h ${minutes}m ${seconds}s remaining`)
+    },1000)
 }
-// countDown('2025-10-26')
+countDown("2025-10-30")

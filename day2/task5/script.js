@@ -1,18 +1,7 @@
-
 function frequency(str){
-    let count = 1
     let freq = {}
-    for(let i=0; i<str.length; i++){
-
-        if(str[i] in freq){
-            let newCount = count
-            newCount++
-            freq[str[i]] = newCount
-        }else{
-            freq[str[i]] = count
-        }
-        // console.log(str[i])
-        
+    for(char of str){
+        freq[char] = (freq[char] || 0) + 1
     }
     return freq
 }

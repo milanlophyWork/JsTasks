@@ -22,7 +22,6 @@ function newQuote(){
     inputEl.focus() // focuses the cursor inside the input box
     resultEl.textContent = ''
     startTime = new Date().getTime()
-
 }
 inputEl.addEventListener('input', ()=>{
     if(inputEl.value === currentQuote){

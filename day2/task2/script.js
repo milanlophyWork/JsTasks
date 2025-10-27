@@ -1,6 +1,3 @@
-
-
-
 function wordCount(text){
     let count = 0
     let words = text.split(' ')

@@ -1,5 +1,6 @@
 function lengthyWord(text){
-    const words = text.split(' ')
+    if(typeof text !== 'string' || !text.trim()) return 'invalid input'
+    const words = text.replaceAll(/[,!:;?.]/g,'').split(' ')
 
     let wordlength = 0
     let lengthyWord

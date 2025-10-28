@@ -1,6 +1,11 @@
 function anagram(str1, str2){
-    const sort1 = str1.split('').sort().toString().replaceAll(',','')
-    const sort2 = str2.split('').sort().toString().replaceAll(',','')
+    const sort1 = str1.replace(/\s/g, '').toLowerCase().split('').sort().join('')
+    const sort2 = str2.replace(/\s/g, '').toLowerCase().split('').sort().join('')
+
+    if(sort1.length !== str2.length){
+        console.log('False')
+        return
+    }
 
     if(sort1===sort2){
         console.log('True')
@@ -8,6 +13,6 @@ function anagram(str1, str2){
         console.log('False')
     }
 }
-anagram('listen','silent')
+anagram('liten','silent')
 anagram('restful','fluster')
 anagram('hello','world')

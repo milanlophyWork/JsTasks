@@ -9,4 +9,4 @@ function objInvert(obj){
     }
     console.log(newObj)
 }
-// objInvert({a:1,b:2})
+objInvert({a:1,b:2})

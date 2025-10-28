@@ -12,7 +12,10 @@ function orderedChain(arr){
     let firstItem = sorted[index]
     
     newArr.push(firstItem)
-
+    if(arr.length > 50) {
+        console.log('Maximum input is 50')
+        return
+    }
     if(newArr.length <=3){
         let j =0
         for(let i=0; i<=sorted.length;i++){
@@ -39,3 +42,6 @@ orderedChain([1324, 8769, 7890, 3425, 6754, 9674])
 orderedChain([90, 100, 32, 50, 23, 10])
 orderedChain([56, 32, 45, 12, 33, 668])
 orderedChain([11, 44, 22, 22, 44, 77])
+orderedChain([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,81,19,20,
+    21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+    41,42,43,44,45,46,47,48,49,50,51,52,53,54])

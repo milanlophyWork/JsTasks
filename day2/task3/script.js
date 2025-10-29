@@ -1,3 +1,5 @@
+import { array } from "../../utils/array.js"
+
 function evenArray(arr){
     if(!Array.isArray(arr) || arr.length ===0) return 'invalid input'
     let even = []
@@ -48,8 +50,8 @@ const testCases = [
     },
     {
         id: 7,
-        input: [1,2,3,4,5,6],
-        output: [2,4,6]
+        input: [1,2,3,4.2,5,6],
+        output: [2,6]
     },
     {
         id: 8,
@@ -95,27 +97,20 @@ const testCases = [
 
 testCases.forEach(testCase => {
     let originalOutput = evenArray(testCase.input)
-    let status
-    if(Array.isArray(originalOutput)){
+    let status = array(originalOutput, testCase.output)
+    /* if(Array.isArray(originalOutput)){
         if(originalOutput.length === testCase.output.length){
-            if(originalOutput.length === 0) {
-                status = 'passed'
-            }
-            else{          
-                for(let i=0; i<originalOutput.length;i++){
-                    if(originalOutput[i] === testCase.output[i]){
-                        status = 'passed' 
-                    }else status= 'failed'
+                  
+            for(let i=0; i<originalOutput.length;i++){
+                if(originalOutput[i] !== testCase.output[i]){
+                    status = 'failed' 
+                    break
                 }
             }
         }else status = 'failed'
     }else{
-        if(testCase.output === originalOutput){
-            status = 'passed'
-        }else{
-            status = 'failed'
-        }
-    }
+        status = originalOutput === testCase.output ? 'Passed' : 'Failed'
+    } */
 
     let display = `
     Testcase ${testCase.id} ${status}

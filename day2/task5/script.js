@@ -10,7 +10,6 @@ function frequency(str){
 console.log(frequency('programming'))
 console.log(frequency('hello'))
 
-
 const testCases = [
     {
         id: 1,

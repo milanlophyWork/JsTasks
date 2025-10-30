@@ -14,7 +14,7 @@ function word(text){
     }
     let pattern2 = ''
     for(let i=1; i<text.length;i++){
-        pattern2 = text.slice(i) // slice(1) : AT because slicing starts at 1, C =>0 A => 1 goes till end as no end index specified
+        pattern2 = text.slice(i) // slice(1) : AT because slicing starts at 1, C =>0 A => 1 goes till end as no end index specified : At 1 AT , at 2 T
         console.log(pattern2)
         str += pattern2
     }

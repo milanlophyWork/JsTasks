@@ -92,7 +92,7 @@ const testCases = [
         id: 15,
         input: false,
         output: 'invalid input'
-    },
+    }
 ]
 
 testCases.forEach(testCase => {

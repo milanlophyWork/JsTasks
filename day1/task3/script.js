@@ -11,14 +11,14 @@ function details(students){
     let markStatus = structuredClone(students)
 
         markStatus.forEach(student =>{
-            if(typeof student.name === 'string' && typeof student.marks === 'number'){
+            if(student.name && typeof student.name === 'string' && student.marks && typeof student.marks === 'number'){
                 if(student.marks > 45){
                     student['status'] = 'Pass'
                 }else{
                     student['status'] = 'Fail'
                 }
                 delete student['marks']
-            }
+            }else return 'invalid input'
         })
     
     return markStatus
@@ -26,66 +26,66 @@ function details(students){
 console.log('original: ',students, 'duplicate:', details(students))
 
 
-// const testCases = [
-//     {
-//         id: 1,
-//         input: [
-//             {name: 'Alice', marks: 42},
-//             {name: 'Bob', marks: 67},
-//             {name: 'Charlie',marks: 35}
-//         ],
-//         output: [
-//             {name: 'Alice', status: 'Fail'},
-//             {name: 'Bob', status: 'Pass'},
-//             {name: 'Charlie',status: 'Fail'}
-//         ]
-//     },
+const testCases = [
+    {
+        id: 1,
+        input: [
+            {name: 'Alice', marks: 42},
+            {name: 'Bob', marks: 67},
+            {name: 'Charlie',marks: 35}
+        ],
+        output: [
+            {name: 'Alice', status: 'Fail'},
+            {name: 'Bob', status: 'Pass'},
+            {name: 'Charlie',status: 'Fail'}
+        ]
+    },
    
-//     {
-//         id: 2,
-//         input: [
-//             { marks: 42},
-//             {name: 'Bob', marks: 67},
-//             {name: '',marks: 35}
-//         ],
-//         output:'invalid input'
-//     },
-//     {
-//         id: 3,
-//         input:[
-//             {name: '', marks: 42},
-//             {name: 'Bob', marks: 67},
-//             {name: '',marks: 35}
-//         ],
-//         output:'invalid input'
-//     },
-//     {
-//         id: 4,
-//         input: [
-//             {name: 'Alice', marks: ''},
-//             {name: 'Bob', marks: 67},
-//             {name: 'Charlie',marks: 35}
-//         ],
-//         output: 'invalid input'
-//     },
-//     {
-//         id: 5,
-//         input: [
-//             {name: 'Alice', marks: 42},
-//             {name: 'Bob', marks: {}},
-//             {name: '',marks: 35}
-//         ],
-//         output: 'invalid input'
-//     },
-//     {
-//         id: 6,
-//         input: [
-//             {name: 'Alice', marks: 42},
-//             'Hello',
-//             {name: '',marks: 35}
-//         ],
-//         output: 'invalid input'
-//     },
+    {
+        id: 2,
+        input: [
+            { marks: 42},
+            {name: 'Bob', marks: 67},
+            {name: '',marks: 35}
+        ],
+        output:'invalid input'
+    },
+    {
+        id: 3,
+        input:[
+            {name: '', marks: 42},
+            {name: 'Bob', marks: 67},
+            {name: '',marks: 35}
+        ],
+        output:'invalid input'
+    },
+    {
+        id: 4,
+        input: [
+            {name: 'Alice', marks: ''},
+            {name: 'Bob', marks: 67},
+            {name: 'Charlie',marks: 35}
+        ],
+        output: 'invalid input'
+    },
+    {
+        id: 5,
+        input: [
+            {name: 'Alice', marks: 42},
+            {name: 'Bob', marks: {}},
+            {name: '',marks: 35}
+        ],
+        output: 'invalid input'
+    },
+    {
+        id: 6,
+        input: [
+            {name: 'Alice', marks: 42},
+            'Hello',
+            {name: '',marks: 35}
+        ],
+        output: 'invalid input'
+    },
     // {
     //     id: 7,
     //     input: [1,2,3,4,5,6],
@@ -131,7 +131,7 @@ console.log('original: ',students, 'duplicate:', details(students))
     //     input: [0,0,0,0,0],
     //     output: 'Array lacks multiples of three'
     // },
-//]
+]
 
 // testCases.forEach(testCase => {
 //     let originalOutput = details(testCase.input)

@@ -1,17 +1,20 @@
 function toSnakeCase(text){
-    if(typeof text !== 'string' || !text.trim() || text.includes(' ')) return 'invalid input'
+    if(typeof text !== 'string' || text.includes(' ') || !text.trim()) return 'invalid input'
 
-   
-    console.log(text)
     let newText = ''
-    for(char of text) {
-        
-        newText += char.replace(/[A-Z]/,`_${char.toLowerCase()}`)
+       
+    if(text[0] === text[0].toUpperCase()) { // if first char is capital just convert it to lower case withpout underscore.
+        let first = text[0].toLowerCase()
+        text = first + text.slice(1)  
     }
-    console.log(newText)
+     
+    for(let char of text){
+        newText += char.replace(/[A-Z]/, `_${char.toLowerCase()}`)
+    }
+
     return newText
 }
-toSnakeCase('myFunction')
+// console.log(toSnakeCase('MyFunction'))
 
 function testCases(){
 
@@ -58,8 +61,8 @@ function testCases(){
         },
         {
             id: 9,
-            input: 'MyFuNcTiOn',
-            output: '_my_fu_nc_ti_on'
+            input: 'MyFuNcTioN',
+            output: 'my_fu_nc_tio_n'
         },
         {
             id: 10,
@@ -78,18 +81,18 @@ function testCases(){
         },
         {
             id: 13,
-            input: '153.0',
-            output: '153.0'
+            input: '153.0,23',
+            output: '153.0,23'
         },
         {
             id: 14,
-            input: 'thisIsAmazing',
+            input: 'this_is_amazing',
             output: 'this_is_amazing'
         },
         {
             id: 15,
-            input: 'goodMorning',
-            output: 'good_morning'
+            input: 'goodMorning;',
+            output: 'good_morning;'
         }
     ]
 

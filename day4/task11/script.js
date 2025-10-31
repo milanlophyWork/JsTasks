@@ -10,7 +10,7 @@ function generateSpiral(n){
     while(left <= right && top <= bottom){
 
         for(let j=left; j<=right; j++){ // top row
-            console.log(top, j)
+           
             matrix[top][j] = num++ // presently every item is zero. so matrix[0][0] = num++ => 1 , matrix[0][1] = 2, matrix[0][2] = 3, j<=2 so out of loop, top =1
         }
         top++

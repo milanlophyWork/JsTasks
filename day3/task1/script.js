@@ -18,7 +18,7 @@ function interpretSum(arr){
 
     return newArr.reduce((acc,curr)=> acc+curr)
 }
-// console.log(interpretSum([[1,0/0,3], [0,7]]))
+// console.log(interpretSum([[1,2,3], [0,7]]))
 
 function toString(arr){
     let str = []
@@ -54,7 +54,7 @@ function toString(arr){
     if(flag === 0 && str.length !== 0) return str 
     else return 'invalid input'
 }
-// console.log(toString([[1,'hi',3], [0,7]])) // ['123','07']
+// console.log(toString([[1,2,3], [0,7]])) // ['123','07']
     
 function toNum(arr){
     let num = []

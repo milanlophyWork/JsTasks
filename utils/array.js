@@ -15,3 +15,29 @@ export function array(originalOutput, testCaseOutput){
     }
     return status
 }
+
+export function objCheck(originalOutput, testCaseOutput){
+    let status = 'passed'
+    
+    if(typeof originalOutput !== 'object'){
+        if(originalOutput !== testCaseOutput) {
+            return status = 'failed'
+        }
+    }else{
+        if(Array.isArray(originalOutput) || originalOutput === null) return status = 'failed'
+        
+        let keysOrg = Object.keys(originalOutput)
+        let keysTest = Object.keys(testCaseOutput)
+
+        if(keysOrg.length !== keysTest.length) {
+            return status = 'failed'
+        }
+
+        keysOrg.forEach(key =>{
+            if(!testCaseOutput.hasOwnProperty(key) || originalOutput[key]!==testCaseOutput[key]){
+                status = 'failed'
+            }
+        })
+    }
+    return status
+}

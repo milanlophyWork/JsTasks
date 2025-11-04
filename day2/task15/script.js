@@ -2,7 +2,7 @@
 function reverseStr(str){
     if(typeof str !== 'string' || !str.trim()) return 'invalid input'
     let reverse = ''
-    for(char of str){
+    for(char of str.trim()){
         reverse = char + reverse
     }
     const ordered = reverse.split(' ').reverse().join(' ')

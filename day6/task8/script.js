@@ -1,4 +1,4 @@
-const readline = require('readline') // import node.js's buil-in readline module which helps to take take input from the user in terminal
+const readline = require('readline') //  import node.js's buil-in readline module which helps to take take input from the user in terminal
 
 const rl= readline.createInterface({ // creating an interface for input/output
     input: process.stdin,// read input from the keyboard

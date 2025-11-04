@@ -11,7 +11,7 @@ export function array(originalOutput, testCaseOutput){
             }
         }else status = 'failed'
     }else{
-        status = originalOutput === testCaseOutput ? 'Passed' : 'Failed'
+        status = originalOutput === testCaseOutput ? 'passed' : 'failed'
     }
     return status
 }

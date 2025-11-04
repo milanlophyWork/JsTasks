@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student validation form</title>
+</head>
+<body>
+    <form onsubmit="submitHandler">
+        
+        <label for="name">Name : </label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required><br><br>
+
+        <label for="address">Address: </label>
+        <textarea id="address" cols="60" required>Enter your address</textarea><br><br>
+
+        <label for="gender">Gender: </label>
+        <select id="gender">
+            <option value="M">M</option>
+            <option value="F">F</option>
+            <option value="O">O</option>
+        </select> <br><br>
+
+        <label>Has passed previous exam</label>
+        <input type="radio" id="pass"><label for="pass">Yes</label>
+        <input type="radio" id="no"><label for="no">No</label><br><br>
+
+        <label>Favourite subject:</label>
+        <input type="checkbox" id="maths"><label for="maths">Maths</label>
+        <input type="checkbox" id="eng"><label for="eng">English</label>
+        <input type="checkbox" id="science"><label for="science">Science</label>
+        <input type="checkbox" id="malayalm"><label for="malayalm">Malayalam</label><br><br>
+
+        <button id="clear" disabled>Clear</button>
+        <button type="submit" id="submit" onclick="submitHandler">Submit</button>
+        
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>

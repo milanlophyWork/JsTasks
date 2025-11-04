@@ -16,7 +16,7 @@ function pattern(str){
     }
     return testStr
 }
-console.log(pattern('cat'))
+console.log(pattern('CAT'))
 
 function testCase(){
 

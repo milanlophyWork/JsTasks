@@ -1,12 +1,14 @@
+import { array, objCheck } from "../../utils/array.js"
 
 function clone(obj){
+    if(typeof obj !== 'object' || Array.isArray(obj) || obj === null) return 'invalid input'
     const duplicate = structuredClone(obj)
-    console.log(duplicate, obj)
+    return obj
 }
-clone({name: 'JavaScript', country: 'US', dataTypes: ['string', 'number', 'boolean', 'object', 'null', 'undefined']})
+console.log(clone({name: 'JavaScript', country: 'US', dataTypes: ['string', 'number', 'boolean', 'object', 'null', 'undefined']}))
 
-/*
-function testCases(){
+
+function testCase(){
 
     const testCases = [
         {
@@ -16,22 +18,22 @@ function testCases(){
         },
         {
             id: 2,
-            input: '123',
+            input: 1.2,
             output: 'invalid input'
         },
         {
             id: 3,
-            input: 15/6,
-            output: false
-        },
+            input: {},
+            output: 'invalid input'
+         },
         {
             id: 4,
             input: 2,
-            output: true
+            output: 'invalid input'
         },
         {
             id: 5,
-            input: {},
+            input: 0/0,
             output: 'invalid input'
         },
         {
@@ -51,56 +53,92 @@ function testCases(){
         },
         {
             id: 9,
-            input: 370,
-            output: true
+            input: {
+                1: 'item1',
+                2: {
+                    2.1: 'item 2.1',
+                    2.2: 'item 2.2'
+                },
+                3: 'item 3'
+            }, 
+            output: {
+                1: 'item1',
+                2: {
+                    2.1: 'item 2.1',
+                    2.2: 'item 2.2'
+                },
+                3: 'item 3'
+            }
         },
         {
             id: 10,
-            input: 0,
-            output: true
+            input: {a: 1, b: [4,5,[8]], c: {'abc': 1}},
+            output: {a: 1, b: [4,5,[8]], c: {'abc': 1}}
         },
         {
             id: 11,
-            input: 0/0,
-            output: 'invalid input'
+            input: {1: 2, 2: 3, 3: 4},
+            output:  {1: 2, 2: 3, 3: 4}
         },
         {
             id: 12,
-            input: -153,
-            output: false
+            input: {1: 'abc', 2: 'def'},
+            output: {1: 'abc', 2: 'def'}
         },
         {
             id: 13,
-            input: 153.0,
-            output: true
+            input: {[1]: [1,2,3]},
+            output: {1: [1,2,3]}
         },
         {
             id: 14,
-            input: 153.1,
-            output: false
+            input: {'c': 1, 2: '@'},
+            output: {'c': 1, 2: '@'}
         },
         {
             id: 15,
-            input: 4/2,
-            output: true
+            input: true,
+            output: 'invalid input'
         }
     ]
 
-    testCases.forEach(testCase => {
-        let originalOutput = clone(testCase.input)
-        let status
-        if(testCase.output === originalOutput){
-            status = 'passed'
-        }else{
-            status = 'failed'
-        }
+    testCases.forEach(test => {
+        let originalOutput = clone(test.input)
+        let status = 'passed'
         
+        if(typeof originalOutput !== 'object'){
+            if(originalOutput !== test.output) {
+                return status = 'failed'
+            }
+        }else{
+            if(Array.isArray(originalOutput) || originalOutput === null) return status = 'failed'
+            
+            let keysOrg = Object.keys(originalOutput)
+            let keysTest = Object.keys(test.output)
+
+            if(keysOrg.length !== keysTest.length) {
+                return status = 'failed'
+            }
+
+            keysOrg.forEach(key =>{
+                if(test.output.hasOwnProperty(key)){
+                    if(typeof originalOutput[key]!== 'object'){
+                        if(originalOutput[key]!==test.output[key]) status = 'failed'
+                    }else{
+                        if(Array.isArray(originalOutput[key] || originalOutput[key] === null))
+                            status = array(originalOutput[key], test.output[key])
+                        else status = objCheck(originalOutput[key], test.output[key])
+                    }
+                }else status = 'failed'
+            })
+        }
+
         let display = `
-        Testcase ${testCase.id} ${status}
-        Output Expected : ${testCase.output}
+        Testcase ${test.id} ${status}
+        Output Expected : ${test.output}
         Output got: ${originalOutput}
         `
         console.log(display)
     }) 
 }
-// testCases()*/
+testCase()

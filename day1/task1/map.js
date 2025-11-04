@@ -7,7 +7,8 @@ function myMap(arr, callback){
     const newArray = []
 
     arr.forEach(item=> {
-        if(typeof item !== 'number' || isNaN(item)) flag = 1
+        if(typeof item === 'number' && isNaN(item)) flag = 1
+        // if(typeof item === 'string' && !item.trim() && item === arr[arr.length-1] && newArray.length === 0) flag=1
         newArray.push(callback(item))
     })
     if(flag === 0)return newArray
@@ -56,8 +57,8 @@ function testCase(){
         {
             id: 7,
             input: ['hi', 'hello'],
-            callback: (n)=> n*2,
-            output: 'invalid input'
+            callback: (n)=> n + ' all',
+            output: ['hi all' , 'hello all']
         },
         {
             id: 8,
@@ -69,7 +70,7 @@ function testCase(){
             id: 9,
             input: [' ', '   ','  '],
             callback: (n)=> n*2,
-            output: 'invalid input'
+            output: [0,0,0]
         },
         {
             id: 10,
@@ -87,7 +88,7 @@ function testCase(){
             id: 12,
             input: ['15', '1000', '0'],
             callback: (n)=> n*2,
-            output: 'invalid input'
+            output: [30,2000,0]
         },
         {
             id: 13,
@@ -123,3 +124,5 @@ function testCase(){
 }
 
 testCase()
+
+// console.log(['15', '1000', '0'].map((n)=> n*2))

@@ -36,26 +36,25 @@ const texts = [
 ]
 function number(n){  
     if(typeof n !== 'number' || isNaN(n) || Math.round(n) !== n) return 'invalid input'
-
+    
     if(n in texts[0]) {
-        console.log(texts[0][n])
+        return texts[0][n]
     }else{
-        let text 
-        if(n<100){
+        let text = ''
+        if(n>0 && n<100){
             const quotient = Math.floor(n/10)*10
-            text= texts[0][quotient] + ' ' + texts[0][n%10]
-            console.log(text)
-        }else if(n<1000){
+            text += texts[0][quotient] + ' ' + texts[0][n%10]
+            return text
+        }else if(n> 100 && n<1000){
             const quotient = Math.floor(n/100)
             text = texts[0][quotient] + ' Hundred And '
             n= n%100
-            console.log(text)
-            number(n)
-
-        }else return 'Numbers should not be greater than 1000 and negative'
+            const second = number(n)
+            return text + second 
+        }else return 'Numbers should not be greater than 1000 or negative'
     }
 }
-number(723)
+console.log(number(2))
 
 
 function testCase(){
@@ -124,12 +123,12 @@ function testCase(){
         {
             id: 13,
             input: 1001,
-            output: 'Numbers should not be greater than 1000 and negative'
+            output: 'Numbers should not be greater than 1000 or negative'
         },
         {
             id: 14,
             input: -3,
-            output: 'Numbers should not be greater than 1000 and negative'
+            output: 'Numbers should not be greater than 1000 or negative'
         },
         {
             id: 15,

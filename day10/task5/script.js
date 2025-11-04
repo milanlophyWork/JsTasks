@@ -18,5 +18,5 @@ function countDown(targetDate){
 
         console.log(`${days}d ${hours}h ${minutes}m ${seconds}s remaining`)
     },1000)
-}
+} 
 countDown("2025-10-30")

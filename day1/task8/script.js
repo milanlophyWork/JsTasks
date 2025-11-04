@@ -1,3 +1,5 @@
+import { array } from "../../utils/array.js"
+
 function anagrams(words){
     
     if(!Array.isArray(words) || words.length === 0) return 'invalid input'
@@ -99,13 +101,34 @@ const testCases = [
 
 testCases.forEach(testCase => {
     let originalOutput = anagrams(testCase.input)
-    let status
-
-    let mySet = new Set()
-    let itemsInArr1 = 0
-    let itemsInArr2 = 0
-    let setSize = 0
+    let status 
     if(Array.isArray(originalOutput)){
+        originalOutput.forEach(ogItem=> {
+            if(Array.isArray(ogItem)){
+                testCase.output.forEach(testItem => {
+                    status = array(ogItem, testItem)
+                    console.log(ogItem, testItem, status)
+                })
+            }
+        })
+    }else{
+        if(originalOutput === testCase.output) status = 'passed'
+        else status = 'failed'
+    }
+
+    let display = `
+    Testcase ${testCase.id} ${status}
+    Output Expected : ${testCase.output}
+    Output Got : ${originalOutput}
+    `
+    console.log(display)
+}) 
+
+ /*
+        let mySet = new Set()
+        let itemsInArr1 = 0
+        let itemsInArr2 = 0
+        let setSize = 0
         originalOutput.forEach(item =>{
             if(Array.isArray(item)){
                 item.forEach(str => {
@@ -128,18 +151,6 @@ testCases.forEach(testCase => {
         if(itemsInArr1 === itemsInArr2 === mySet.size){ // checking no. of items in array 1 and array 2 and mySet size are same. if same we need to ensure no duplicates Eg: arr1 = [1,2,2]  arr2 = [1,2,3]  set = {1,2,3}  
             if(setSize === mySet.size) status = 'passed' // checking if myset size after adding arr2 is same to set size before. // in above eg: set at first is {1,2} set at second is {1,2,3} hence duplicates are avoided.
             else status ='failed'
-
-        }else status= 'failed'
-    }else{
-        if(originalOutput === testCase.output) status = 'passed'
-        else status = 'failed'
-    }
-
-    let display = `
-    Testcase ${testCase.id} ${status}
-    Output Expected : ${testCase.output}
-    Output Got : ${originalOutput}
-    `
-    console.log(display)
-}) 
-
+        }else {
+            status= 'failed'
+        }*/

@@ -1,6 +1,6 @@
 import {array} from '../../utils/array.js'
 
-// All permutations of a string
+// All permutations of a string 
 function getPermutations(str){
     if(typeof str !== 'string' || !str.trim()) return 'invalid input'
 

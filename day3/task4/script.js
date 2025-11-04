@@ -9,7 +9,7 @@ function arrangeArray(arr1, arr2, position){
     }
     // arr2.forEach(item => {
     //     arr1[position].splice() = item
-    // })
+    // }) 
     // arr1.splice(position, 1, arr2)
     arr1[position] = arr2
 

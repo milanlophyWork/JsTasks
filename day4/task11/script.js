@@ -1,7 +1,7 @@
 function generateSpiral(n){
     if(n<-0) return []
 
-    const matrix = Array.from({length: n}, ()=> Array(n).fill(0)) // Array.from(items, mapFn) | length: n => create a sequence of Arrays [Array(n).fill(0) => Array with n items which are zero ] of length n 
+    const matrix = Array.from({length: n}, ()=> Array(n).fill(0)) //  Array.from(items, mapFn) | length: n => create a sequence of Arrays [Array(n).fill(0) => Array with n items which are zero ] of length n 
     
     let top = 0, bottom = n-1
     let left = 0, right = n-1

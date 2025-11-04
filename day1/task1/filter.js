@@ -7,15 +7,13 @@ function MyFilter(arr, callback){
     const newArray = []
 
     arr.forEach(item => {
-        if(typeof item !== 'number' && typeof item !== 'string' || isNaN(item)) flag = 1
-        // if(typeof item === 'string' && !item.trim() || typeof item === 'number') 
+        if(typeof item === 'number' && isNaN(item)) flag = 1
+        // if(typeof item === 'string' && !item.trim() && item === arr[arr.length-1] && newArray.length === 0) flag=1
         if(callback(item) === true) newArray.push(item)
     })
     if(flag === 0) return newArray
     else return 'invalid input'
 }
-// console.log(MyFilter(arr, (n)=> n%2===0))
-
 
 function testCase(){
     const testCases = [
@@ -69,9 +67,9 @@ function testCase(){
         },
         {
             id: 9,
-            input: [' ', '   ','  '],
-            callback: (n)=> n%2===0,
-            output: 'invalid input'
+            input: [' ', 'hi' , '  '],
+            callback: (n)=> n.length===2 ,
+            output: ['hi','  ']
         },
         {
             id: 10,
@@ -100,7 +98,7 @@ function testCase(){
         {
             id: 14,
             input: [0, 1],
-            callback: (n)=> !n,
+            callback: (n)=> n+2===2 ,
             output: [0]
         },
         {
@@ -125,3 +123,5 @@ function testCase(){
 }
 
 testCase()
+
+// console.log(['  ', 'hi', ''].filter(n=> n.length===2))

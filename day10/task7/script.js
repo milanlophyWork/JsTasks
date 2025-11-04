@@ -1,4 +1,6 @@
-let text = {
+import { array } from "../../utils/array.js"
+
+let texts = {
     1: 'One',
     2: 'Two',
     3: 'Three',
@@ -28,22 +30,118 @@ let text = {
     90: 'Ninety',
     100: 'Hundred'
 }
-function numberToText(num){
-    if(text[num]) return text[num]
-    else{
-        let numTxt = ''
-        if(num < 100){
-            const quotient = Math.floor(num/10)*10
-            numTxt = `${text[quotient]} ${text[num%10]}` + numTxt
-            console.log(numTxt)
-        }
-        else if(num < 1000){
-            const quotient = Math.floor(num/100)
-            numTxt = `${text[quotient]} hundred and ` + numTxt
-            num = num%100 
-            console.log(numTxt)
-            numberToText(num)
-        }
+function numberToText(n){  
+    if(typeof n !== 'number' || isNaN(n) || Math.round(n) !== n) return 'invalid input'
+    
+    if(n in texts) {
+        return texts[n]
+    }else{
+        let text = ''
+        if(n>0 && n<100){
+            const quotient = Math.floor(n/10)*10
+            text += texts[quotient] + ' ' + texts[n%10]
+            return text
+        }else if(n> 100 && n<1000){
+            const quotient = Math.floor(n/100)
+            text = texts[quotient] + ' Hundred And '
+            n= n%100
+            const second = numberToText(n)
+            return text + second 
+        }else return 'Numbers should not be greater than 1000 or negative'
     }
 }
 numberToText(432)
+
+function testCase(){
+
+    const testCases = [
+        {
+            id: 1,
+            input: '',
+            output: 'invalid input'
+        },
+        {
+            id: 2,
+            input: 1.2,
+            output: 'invalid input'
+        },
+        {
+            id: 3,
+            input: {},
+            output: 'invalid input'
+         },
+        {
+            id: 4,
+            input: 2,
+            output: 'Two'
+        },
+        {
+            id: 5,
+            input: 0/0,
+            output: 'invalid input'
+        },
+        {
+            id: 6,
+            input: null,
+            output: 'invalid input'
+        },
+        {
+            id: 7,
+            input: [],
+            output: 'invalid input'
+        },
+        {
+            id: 8,
+            input: undefined,
+            output: 'invalid input'
+        },
+        {
+            id: 9,
+            input: 20, 
+            output: 'Twenty'
+        },
+        {
+            id: 10,
+            input: 23,
+            output:'Twenty Three'
+        },
+        {
+            id: 11,
+            input: '123',
+            output: 'invalid input'
+        },
+        {
+            id: 12,
+            input: 723,
+            output: 'Seven Hundred And Twenty Three'
+        },
+        {
+            id: 13,
+            input: 1001,
+            output: 'Numbers should not be greater than 1000 or negative'
+        },
+        {
+            id: 14,
+            input: -3,
+            output: 'Numbers should not be greater than 1000 or negative'
+        },
+        {
+            id: 15,
+            input: true,
+            output: 'invalid input'
+        }
+    ]
+
+    testCases.forEach(test => {
+        let originalOutput = numberToText(test.input)
+        let status = array(originalOutput, test.output)
+        
+        let display = `
+        Testcase ${test.id} ${status}
+        Output Expected : ${test.output}
+        Output got: ${originalOutput}
+        `
+        console.log(display)
+    }) 
+}
+testCase()

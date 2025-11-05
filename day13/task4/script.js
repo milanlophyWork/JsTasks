@@ -13,7 +13,6 @@ function subArray(arr, size){
     
     for(let i=0; i<=index; i++){
         if(typeof arr[i] !== 'number' || isNaN(arr[i])) return 'invalid input'
-        
 
         arrItems.push(arr[i])
         if((i+1) % size === 0) {

@@ -2,11 +2,16 @@ export function array(originalOutput, testCaseOutput){
     let status = 'passed'
     if(Array.isArray(originalOutput)){
         if(originalOutput.length === testCaseOutput.length){
-                  
+            
             for(let i=0; i<originalOutput.length;i++){
-                if(originalOutput[i] !== testCaseOutput[i]){
-                    status = 'failed' 
-                    break
+                if(Array.isArray(originalOutput[i]) && array.length !== 0)return  status = array(originalOutput[i], testCaseOutput[i])
+                else if(typeof originalOutput[i] === 'object' && !Array.isArray(originalOutput[i]) && originalOutput[i] !== null)
+                    return status = objCheck(originalOutput[i],testCaseOutput[i])
+                else{
+                    if(originalOutput[i] !== testCaseOutput[i]){
+                        status = 'failed' 
+                        break
+                    }
                 }
             }
         }else status = 'failed'

@@ -1,46 +1,37 @@
 import { array } from "../../utils/array.js"
 
-function sortArr(arr){
-    if(!Array.isArray(arr) || arr.length === 0 ) return 'invalid input'
-    let minValues = []
+function nonRepeatChar(str){
+    if(typeof str !== 'string' || !str.trim()) return 'invalid input'
 
-    function findMin(arr){
-        let min = arr[0]
-        let minIndex        
-
-        for(let i=0; i<arr.length; i++){
-            if(typeof arr[i] !== 'number' || isNaN(arr[i])) return 'invalid input'
-            if(arr[i] < min){
-                min= arr[i]
-                minIndex = arr.indexOf(min)
-            }
+    let mySet = new Set()
+    let newSet = new Set()
+    for(let i=0; i<str.length; i++){
+        if(mySet.has(str[i])){
+            newSet.add(str[i])
         }
-
-        arr.splice(minIndex, 1) // removing min value from original array
-        minValues.push(min)
-     
-        return arr.length === 0 ? minValues : findMin(arr)
+        mySet.add(str[i])
     }
-    return findMin(arr)
+    return  str.split('').indexOf([...mySet.difference(newSet)][0])
 }
-console.log(sortArr([5,4,3,2,1]))
+// console.log(nonRepeatChar('roses are red'))
+// console.log(nonRepeatChar('aabb'))
 
 function testCase(){
     const testCases = [
         {
             id: 1,
-            input: [1,2,3,4,5],
-            output: [1,2,3,4,5]
+            input: 'roses are red',
+            output: 1
         },
         {
             id: 2,
-            input: [5,4,3,2,1],
-            output: [1,2,3,4,5]
+            input: 'aabb',
+            output: -1
         },
         {
             id: 3,
-            input: [1,5,2,7],
-            output: [1,2,5,7]
+            input: '',
+            output: 'invalid input'
          },
         {
             id: 4,
@@ -74,18 +65,18 @@ function testCase(){
         },
         {
             id: 10,
-            input: [1,0/0,3],
-            output: 'invalid input'
+            input: '  i  ',
+            output: 2
         },
         {
             id: 11,
-            input: ['hi', 'hello'],
+            input: ' ',
             output: 'invalid input'
         },
         {
             id: 12,
-            input: [1],
-            output: [1]
+            input: 'aaaaaa',
+            output: -1
         },
         {
             id: 13,
@@ -94,18 +85,18 @@ function testCase(){
         },
         {
             id: 14,
-            input: [1.5, 1.4, 2, 1.1],
-            output: [1.1, 1.4, 1.5, 2]
+            input: '12345',
+            output: 0
         },
         {
             id: 15,
-            input: [0.5, 1/2],
-            output: [0.5, 0.5]
+            input: '111222',
+            output: -1
         }
     ]
 
     testCases.forEach(test => {
-        let originalOutput = sortArr(test.input)
+        let originalOutput = nonRepeatChar(test.input)
         let status = array(originalOutput, test.output)
         
         let display = `

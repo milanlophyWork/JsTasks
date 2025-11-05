@@ -1,46 +1,49 @@
 import { array } from "../../utils/array.js"
 
-function sortArr(arr){
-    if(!Array.isArray(arr) || arr.length === 0 ) return 'invalid input'
-    let minValues = []
+function reverseVowels(str){
+    if(typeof str !== 'string' || !str.trim()) return 'invalid input'
 
-    function findMin(arr){
-        let min = arr[0]
-        let minIndex        
+    let vowels = ['a','e','i','o','u', 'A', 'E', 'I', 'O', 'U']
+    let index = new Set()
+    let newStr = []
 
-        for(let i=0; i<arr.length; i++){
-            if(typeof arr[i] !== 'number' || isNaN(arr[i])) return 'invalid input'
-            if(arr[i] < min){
-                min= arr[i]
-                minIndex = arr.indexOf(min)
-            }
-        }
-
-        arr.splice(minIndex, 1) // removing min value from original array
-        minValues.push(min)
-     
-        return arr.length === 0 ? minValues : findMin(arr)
+    for(let i=0; i<str.length; i++){
+        vowels.forEach(item => {
+            if(item === str[i]) index.add(str.indexOf(str[i]))
+        })
+        newStr.push(str[i])
     }
-    return findMin(arr)
+    index = [...index]
+    let rev = [...index].reverse()
+    console.log(index, rev)
+
+    for(let i=0; i<str.length; i++){
+        for(let j=0; j<index.length; j++){
+            if(str[index[j]] === str[i]){
+                newStr.splice(index[j], 1, str[rev[j]])
+            }else  continue
+        }
+    }
+    return newStr.join('')
 }
-console.log(sortArr([5,4,3,2,1]))
+// console.log(reverseVowels('IceCreAm'))
 
 function testCase(){
     const testCases = [
         {
             id: 1,
-            input: [1,2,3,4,5],
-            output: [1,2,3,4,5]
+            input: 'IceCreAm',
+            output: 'AceCreIm'
         },
         {
             id: 2,
-            input: [5,4,3,2,1],
-            output: [1,2,3,4,5]
+            input: 'aabb',
+            output: 'aabb'
         },
         {
             id: 3,
-            input: [1,5,2,7],
-            output: [1,2,5,7]
+            input: '',
+            output: 'invalid input'
          },
         {
             id: 4,
@@ -74,18 +77,18 @@ function testCase(){
         },
         {
             id: 10,
-            input: [1,0/0,3],
-            output: 'invalid input'
+            input: '  i  ',
+            output: '  i  '
         },
         {
             id: 11,
-            input: ['hi', 'hello'],
+            input: ' ',
             output: 'invalid input'
         },
         {
             id: 12,
-            input: [1],
-            output: [1]
+            input: 'aeiou',
+            output: 'uoiea'
         },
         {
             id: 13,
@@ -94,18 +97,18 @@ function testCase(){
         },
         {
             id: 14,
-            input: [1.5, 1.4, 2, 1.1],
-            output: [1.1, 1.4, 1.5, 2]
+            input: '1a2e3i4o5',
+            output: '1o2i3e4a5'
         },
         {
             id: 15,
-            input: [0.5, 1/2],
-            output: [0.5, 0.5]
+            input: '111222',
+            output: '111222'
         }
     ]
 
     testCases.forEach(test => {
-        let originalOutput = sortArr(test.input)
+        let originalOutput = reverseVowels(test.input)
         let status = array(originalOutput, test.output)
         
         let display = `

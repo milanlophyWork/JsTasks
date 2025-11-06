@@ -32,6 +32,12 @@ addressEl.addEventListener('input', ()=> {
 function submitHandler(e){
     e.preventDefault()
     document.body.appendChild(ulEl)
+    const li = `
+        <li>${nameEl.value}</li>
+        <li>${ageEl.value}</li>
+        <li>${addressEl.value}</li>
 
+    `
+    
 }
 // document.body.appendChild(ulEl)

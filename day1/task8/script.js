@@ -107,7 +107,6 @@ testCases.forEach(testCase => {
             if(Array.isArray(ogItem)){
                 testCase.output.forEach(testItem => {
                     status = array(ogItem, testItem)
-                    console.log(ogItem, testItem, status)
                 })
             }
         })

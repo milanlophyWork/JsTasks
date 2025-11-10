@@ -4,7 +4,7 @@ export function array(originalOutput, testCaseOutput){
         if(originalOutput.length === testCaseOutput.length){
             
             for(let i=0; i<originalOutput.length;i++){
-                if(Array.isArray(originalOutput[i]) && array.length !== 0)return  status = array(originalOutput[i], testCaseOutput[i])
+                if(Array.isArray(originalOutput[i]) && originalOutput[i].length !== 0)return  status = array(originalOutput[i], testCaseOutput[i])
                 else if(typeof originalOutput[i] === 'object' && !Array.isArray(originalOutput[i]) && originalOutput[i] !== null)
                     return status = objCheck(originalOutput[i],testCaseOutput[i])
                 else{

@@ -1,6 +1,6 @@
 import { array } from "../../utils/array.js"
 
-function pipe(...fns: [(...x: number[])=> number]){
+function pipe(...fns: ((...x: number[])=> number)[]){ // array of fns : ...fns: ((...x: number[])=> number)[])
     if(fns.length === 0) return 'invalid input'
     for(let item of fns) if(typeof item !== 'function') return 'invalid input'
     
@@ -20,8 +20,7 @@ function pipe(...fns: [(...x: number[])=> number]){
 }
 const add5 = (x:number=0) => x+5
 const multiply3 = (x:number=1)=> x*3
-// const piped = pipe(add5, multiply3)
-const piped = pipe(3)
+const piped = pipe(add5, multiply3)
 console.log(piped(5))
 
 const multiply = (x:number=1, y:number=1)=> x*y
@@ -137,4 +136,4 @@ function testCase(){
         console.log(display)
     }) 
 }
-// testCase()
+testCase()

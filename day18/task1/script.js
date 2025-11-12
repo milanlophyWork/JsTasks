@@ -1,19 +1,17 @@
-function seriesSum(n: number):string{
-    if(n<=0 || Math.round(n) !== n || typeof n !== 'number') return 'invalid input'
-
-    let sum = 0n
-
-    for(let i=1n; i<= BigInt(n); i++){
-        let power:bigint = i**i
-        sum += power
+"use strict";
+function seriesSum(n) {
+    if (n <= 0 || Math.round(n) !== n || typeof n !== 'number')
+        return 'invalid input';
+    let sum = 0n;
+    for (let i = 1n; i <= BigInt(n); i++) {
+        let power = i ** i;
+        sum += power;
     }
-    return sum.toString().slice(-10).padStart(10, '0')
+    return sum.toString().slice(-10).padStart(10, '0');
 }
 // console.log(seriesSum(10))
 // console.log(seriesSum(1000))
-
-
-function testCase(){
+function testCase() {
     const testCases = [
         {
             id: 1,
@@ -29,7 +27,7 @@ function testCase(){
             id: 3,
             input: 3,
             output: '0000000032'
-         },
+        },
         {
             id: 4,
             input: [],
@@ -90,20 +88,18 @@ function testCase(){
             input: 0,
             output: 'invalid input'
         }
-    ]
-
+    ];
     testCases.forEach(test => {
-        let originalOutput = seriesSum(test.input)
-        let status = 'passed'
-        
-        if(originalOutput !== test.output) status = 'failed'
-
+        let originalOutput = seriesSum(test.input);
+        let status = 'passed';
+        if (originalOutput !== test.output)
+            status = 'failed';
         let display = `
         Testcase ${test.id} ${status}
         Output Expected : ${test.output}
         Output got: ${originalOutput}
-        `
-        console.log(display)
-    }) 
+        `;
+        console.log(display);
+    });
 }
-testCase()
+testCase();

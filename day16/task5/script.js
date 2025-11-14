@@ -1,4 +1,4 @@
-import { array } from "../../utils/array.js"
+import { deepCheck } from "../../utils/array.js"
 
 function triangle(arr){
     if(!Array.isArray(arr) || arr.length <= 1) return 'invalid input'
@@ -122,7 +122,7 @@ function testCase(){
 
     testCases.forEach(test => {
         let originalOutput = triangle(test.input)
-        let status = array(originalOutput, test.output)
+        let status = deepCheck(originalOutput, test.output)
         
         let display = `
         Testcase ${test.id} ${status}

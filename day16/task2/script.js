@@ -1,4 +1,4 @@
-import { array } from "../../utils/array.js"
+import { deepCheck } from "../../utils/array.js"
 
 function uniqueNum(arr){
     if(!Array.isArray(arr) || arr.length === 0) return 'invalid input'
@@ -102,7 +102,7 @@ function testCase(){
 
     testCases.forEach(test => {
         let originalOutput = uniqueNum(test.input)
-        let status = array(originalOutput, test.output)
+        let status = deepCheck(originalOutput, test.output)
         
         let display = `
         Testcase ${test.id} ${status}

@@ -3,8 +3,8 @@
 export function analyzeHeatmap(heatmap: number[][]){
     if(!Array.isArray(heatmap) || heatmap.length === 0) return 'invalid input'
 
-    let min:number[] = [Infinity]
-    let max:number[] = [0]
+    let min = {temp: Infinity, point: [-1,-1]}
+    let max = {temp: -Infinity, point: [-1,-1]}
     let sum = 0
     let n = 0
     
@@ -15,28 +15,29 @@ export function analyzeHeatmap(heatmap: number[][]){
             if(typeof heatmap[i][j] !== 'number' || isNaN(heatmap[i][j])) return 'invalid input'
 
             n++
-            if(heatmap[i][j] < min[0]){
-                min[0] = heatmap[i][j]
-                min[1] = [i,j]
+            if(heatmap[i][j] < min.temp){
+                min.temp = heatmap[i][j]
+                min.point = [i,j]
             }
-            if(heatmap[i][j] > max[0]){
-            max[0] = heatmap[i][j]
-            max[1] = [i,j]
+            if(heatmap[i][j] > max.temp){
+                max.temp = heatmap[i][j]
+                max.point = [i,j]
             }
         
-            heatmap[i][j] >= 0 ? sum += heatmap[i][j] : sum += -(heatmap[i][j])
+            sum += heatmap[i][j]
         }
     }
     return {
-        maxTemp: max[0],
-        minTemp: min[0],
+        maxTemp: max.temp,
+        minTemp: min.temp,
         averageTemp: Number((sum/n).toFixed(1)),
-        hottestPoint: max[1],
-        coldestPoint: min[1]
+        hottestPoint: max.point,
+        coldestPoint: min.point
     }
 }
 // console.log(analyzeHeatmap([[30,32,35], [28,40,33], [31,36,38]]))
-
+// console.log(analyzeHeatmap([[-30,-32,-35], [-28,-40,-33], [-31,-36,-38]]))
+ 
 /*
 function testCase(){
     let testCases = [

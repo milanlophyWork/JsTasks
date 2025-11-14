@@ -1,24 +1,22 @@
-function TeamSelection(players: string[], teamSize : number){
+function TeamSelection(players: string[], teamSize: number){
+    if(players.length === teamSize) return [...players]
+    if(players.length < teamSize) return 'no enough players'
     if(teamSize <= 0) return 'invalid input'
 
-    let newArr = []
-    let result = []
-    if(players.length === teamSize) return [players]
-    else if(teamSize > players.length) return 'no enough players'
-    else{
-        
-        for(let i=0; i<players.length; i++){
-            for(let j=i; j<players.length; j++){
-                if(newArr.length !== teamSize) newArr.push(players[j])
-                else {
-                    result.push([...newArr])
-                    newArr = []
-                   
-                }
-            }
-        } 
-        
+    let result : string[][] = []
+    function combine(start:number, current: string[]){
+        if(current.length === teamSize){
+            result.push([...current])
+            return
+        }
+
+        for(let i=start; i<players.length; i++){
+            current.push(players[i])
+            combine(i+1, current)
+            current.pop()
+        }
     }
+    combine(0,[])
     return result
 }
-console.log(TeamSelection(['a', 'b', 'c', 'd'], 3)) // Not complete
+console.log(TeamSelection(['a', 'b', 'c'], 2)) // Not complete 

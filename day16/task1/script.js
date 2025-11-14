@@ -1,4 +1,4 @@
-import { array } from "../../utils/array.js"
+import { deepCheck } from "../../utils/array.js"
 
 function parenthesis(str){
     if(typeof str !== 'string' || !str.trim()) return 'invalid input'
@@ -106,7 +106,7 @@ function testCase(){
 
     testCases.forEach(test => {
         let originalOutput = parenthesis(test.input)
-        let status = array(originalOutput, test.output)
+        let status = deepCheck(originalOutput, test.output)
         
         let display = `
         Testcase ${test.id} ${status}

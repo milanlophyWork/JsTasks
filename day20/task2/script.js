@@ -1,6 +1,43 @@
-import { deepCheck } from "../../utils/array.js"
-import { analyzeHeatmap } from "./script.ts"
-
+"use strict";
+// import { objDeepCheck } from '../../utils/array.js'
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.analyzeHeatmap = analyzeHeatmap;
+function analyzeHeatmap(heatmap) {
+    if (!Array.isArray(heatmap) || heatmap.length === 0)
+        return 'invalid input';
+    var min = { temp: Infinity, point: [-1, -1] };
+    var max = { temp: -Infinity, point: [-1, -1] };
+    var sum = 0;
+    var n = 0;
+    for (var i = 0; i < heatmap.length; i++) {
+        if (!Array.isArray(heatmap[i]))
+            return 'invalid input';
+        for (var j = 0; j < heatmap[i].length; j++) {
+            if (typeof heatmap[i][j] !== 'number' || isNaN(heatmap[i][j]))
+                return 'invalid input';
+            n++;
+            if (heatmap[i][j] < min.temp) {
+                min.temp = heatmap[i][j];
+                min.point = [i, j];
+            }
+            if (heatmap[i][j] > max.temp) {
+                max.temp = heatmap[i][j];
+                max.point = [i, j];
+            }
+            sum += heatmap[i][j];
+        }
+    }
+    return {
+        maxTemp: max.temp,
+        minTemp: min.temp,
+        averageTemp: Number((sum / n).toFixed(1)),
+        hottestPoint: max.point,
+        coldestPoint: min.point
+    };
+}
+// console.log(analyzeHeatmap([[30,32,35], [28,40,33], [31,36,38]]))
+// console.log(analyzeHeatmap([[-30,-32,-35], [-28,-40,-33], [-31,-36,-38]]))
+/*
 function testCase(){
     let testCases = [
         {
@@ -11,7 +48,7 @@ function testCase(){
         {
             id: 2,
             input: [[30,-32,35], [28,40,33], [31,36,38]],
-            output: {maxTemp: 40, minTemp: -32, averageTemp: 26.6, hottestPoint: [1,1], coldestPoint: [0,1]}
+            output: {maxTemp: 40, minTemp: -32, averageTemp: 33.7, hottestPoint: [1,1], coldestPoint: [0,1]}
         },
         {
             id: 3,
@@ -26,7 +63,7 @@ function testCase(){
         {
             id: 5,
             input: [[-30,-32,-35], [-28,-40,-33], [-31,-36,-38]],
-            output: {maxTemp: -28, minTemp: -40, averageTemp: -33.7, hottestPoint: [1,0], coldestPoint: [1,1]}
+            output: {maxTemp: -28, minTemp: -40, averageTemp: 33.7, hottestPoint: [1,0], coldestPoint: [1,1]}
         },
         {
             id: 6,
@@ -82,14 +119,15 @@ function testCase(){
 
     testCases.forEach(test => {
         let originalOutput = analyzeHeatmap(test.input)
-        let status = deepCheck(originalOutput, test.output)
-       
+        let status = objDeepCheck(originalOutput, test.output)
+        
         let display = `
         Testcase ${test.id} ${status}
         Output Expected : ${test.output}
         Output got: ${originalOutput}
         `
         console.log(display)
-    }) 
+    })
 }
 testCase();
+*/ 

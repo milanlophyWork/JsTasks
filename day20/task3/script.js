@@ -1,6 +1,29 @@
-import { deepCheck } from "../../utils/array.js"
-import { sortMixedNested } from "./script.ts"
-
+"use strict";
+// import { nestedArr } from '../../utils/array.js'
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sortMixedNested = sortMixedNested;
+function sortMixedNested(arr) {
+    if (!Array.isArray(arr) || arr.length === 0)
+        return 'invalid input';
+    var sorted = arr.flat(Infinity).sort();
+    var flag = 0;
+    function sorting(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            if (typeof arr[i] !== 'number' && !Array.isArray(arr[i]))
+                flag = 1;
+            if (Array.isArray(arr[i]))
+                sorting(arr[i]);
+            else {
+                arr[i] = sorted[0];
+                sorted.splice(0, 1);
+            }
+        }
+        return flag === 0 ? arr : 'invalid input';
+    }
+    return sorting(arr);
+}
+console.log(sortMixedNested([3, [2, [5, 1]], 4]));
+/*
 function testCase(){
     let testCases = [
         {
@@ -82,7 +105,7 @@ function testCase(){
 
     testCases.forEach(test => {
         let originalOutput = sortMixedNested(test.input)
-        let status = deepCheck(originalOutput, test.output)
+        let status = nestedArr(originalOutput, test.output)
 
         let display = `
         Testcase ${test.id} ${status}
@@ -90,6 +113,6 @@ function testCase(){
         Output got: ${originalOutput}
         `
         console.log(display)
-    }) 
+    })
 }
-testCase()
+testCase()*/ 

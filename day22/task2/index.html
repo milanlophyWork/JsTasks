@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul{
+            padding: 0;
+        }
+        li p{
+            /* list-style: none; */
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 5px;
+        }
+        .tooltip{
+            width: fit-content;
+            padding: 5px 10px;
+            color: white;
+            background-color: black;
+            overflow: visible;
+            /* visibility: hidden */
+        }
+       
+    </style>
+</head>
+<body>
+    <ul class="ul-bar">
+        <li><p>I'm hidden text, I will only show if you hover me!!</p></li>
+        <!-- <li><p>Hai Hello Good Morning</p></li>
+        <li><p>Welcome to ooty, Nice to meet you</p></li>
+        <li><p>I'm hidden text, I will only show if you hover me!!</p></li> -->
+    </ul>
+    <script src="script.js"></script>
+</body>
+</html>

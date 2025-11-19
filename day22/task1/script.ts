@@ -1,4 +1,4 @@
-
+/*
 function formatFn(date: Date, format: string){
     let timeArr = date.toString().split('GMT')[0].slice(-9).split(':')
     let formatStr = format.split(',')
@@ -39,5 +39,32 @@ function formatFn(date: Date, format: string){
     }
     return `${dateStr.slice(0,-1)}, ${timeStr.slice(0,-1)}`
 
+}*/
+function formatFn(date: Date, format: string){
+    if(!(date instanceof Date)) return 'invalid date'
+    if(typeof format !== "string") return 'invalid format'
+
+    const hours24 = date.getHours()
+    const hours12 = hours24 % 12 || 12
+    const map : Record<string, string | number>= {
+        'YYYY': date.getFullYear(),
+        'YY' : String(date.getFullYear()).slice(-2),
+        'MM' : String(date.getMonth() + 1).padStart(2,'0'),
+        'M' : String(date.getMonth() + 1),
+        'DD' : String(date.getDate()).padStart(2, '0'),
+        'D' : String(date.getDate()),
+        'HH' : String(hours24).padStart(2, '0'),
+        'H' : String(hours24),
+        'hh' : String(hours12).padStart(2, '0'),
+        'h' : String(hours12),
+        'mm' : String(date.getMinutes()).padStart(2, '0'),
+        'm' : String(date.getMinutes()),
+        'ss' : String(date.getSeconds()).padStart(2, '0'),
+        's' : String(date.getSeconds()),
+        'A' : hours24 >= 12 ? 'PM' : 'AM',
+        'a' : hours24 >= 12 ? 'pm' : 'am'
+    }
+
+    return format.replace(/YYYY|YY|MM|M|DD|D|HH|H|hh|h|mm|m|ss|s|A|a/g, match => map[match])
 }
-console.log(formatFn(new Date(2025, 1,4, 13, 44, 3),'YY-M-D, H:mm:ss'))
+console.log(formatFn(new Date(2025, 1,4, 13, 44, 3),'YY-M-D, H:m:ss A'))

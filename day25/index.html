@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: none;
+        }
+        :target{
+            display: block;
+        }
+        a{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="#dd1">Home</a>
+                <div id="dd1">
+                    <a href="#">h1</a>
+                    <a href="#">h2</a>
+                </div>
+            </li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+    <script src="script.js"></script>
+</body>
+</html>

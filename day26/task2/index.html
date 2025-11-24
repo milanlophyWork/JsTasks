@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nav bar</title>
+
+    <style>
+        ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: rgb(175, 179, 169);
+            padding: 10px;
+        }
+        a{
+            text-decoration: none;
+            color: rgb(53, 52, 52);
+        }
+        li{
+            list-style: none;
+        }
+        section{
+            display: none;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            animation-name: myAnimation;
+            animation-duration: 4s;
+        }
+        :target{
+            display: flex;
+            align-items: center;
+            justify-self: center;
+        }
+        @keyframes myAnimation{
+            0% {color: red; left: 0px; top: 0px;}
+            25% {color: yellow; left: 400px; top: 0px;}
+            50% {color: blue; left: 400px; top: 200px;}
+            75% {color: green; left: 0px; top: 200px;}
+            100% {color: red; left: 0px; top: 0px;}
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#page1">Page 1</a></li>
+            <li><a href="#page2">Page 2</a></li>
+            <li><a href="#page3">Page 3</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">Welcome to home page</section>
+    <section id="page1">This is first page</section>
+    <section id="page2">This is second page</section>
+    <section id="page3">This is third page</section>
+
+</body>
+</html>

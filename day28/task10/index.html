@@ -5,16 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scroll to top</title>
     <style>
-        div{
+        .container{
             margin: 10px;
             max-height: 600px;
             font-size: 30px;
             line-height: 35px;
             overflow-y: scroll;
         }
+
+        .to-top{
+            position: fixed;
+            bottom: 20;
+            right: inherit;
+            display: none;
+        }
+        .to-top.show{
+            display: block;
+        }
+        #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 0%;
+    background: #4CAF50;
+    z-index: 9999;
+    transition: width 0.1s linear;
+}
     </style>
 </head>
 <body>
+    <div id="progress-bar"></div>
     <div class="container">
         <p>
             Nature is everything around us that makes life possible and beautiful. It includes the air we breathe, the weather we feel, the plants, animals, and everything we see outside. We call it "Mother Nature" because, like a mother, it provides us with everything we need, such as food, clothes, and shelter. When we step outside, the sunlight, trees, flowers, and cool breeze remind us of how amazing nature is.

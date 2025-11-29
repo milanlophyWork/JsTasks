@@ -3,7 +3,7 @@ function toSnakeCase(text){
 
     let newText = ''
        
-    if(text[0] === text[0].toUpperCase()) { // if first char is capital just convert it to lower case withpout underscore.
+    if(text[0] === text[0].toUpperCase()) { // if first char is capital just convert it to lower case without underscore.
         let first = text[0].toLowerCase()
         text = first + text.slice(1)  
     }
